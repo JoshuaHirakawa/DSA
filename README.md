@@ -2,6 +2,8 @@
 
 A comprehensive collection of LeetCode problems organized by the **Top Interview 150** study plan structure.
 
+![Studying](studying.gif)
+
 ## 📁 Repository Structure
 
 This repository follows the **LeetCode Top Interview 150** organization - **categories first, then difficulty levels** as subdirectories. This structure helps you:
