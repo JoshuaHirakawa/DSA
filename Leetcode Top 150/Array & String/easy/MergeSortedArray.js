@@ -1,5 +1,5 @@
-// 88. Merge Sorted Array
-// Easy
+// * 88. Merge Sorted Array
+// ; Easy
 // Topics
 // premium lock icon
 // Companies
