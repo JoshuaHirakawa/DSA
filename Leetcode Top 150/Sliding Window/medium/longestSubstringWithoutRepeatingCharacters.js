@@ -27,30 +27,61 @@
 // output: number representing the length of longest substring without dupe chars
 //strategy: use a cache to track all characters in current substring, if length exceeds max, update max
 // implement sliding window using two pointers. when we find duplicate, delete all corresponding properties until left pointer reaches first char after dupe
+// var lengthOfLongestSubstring = function (s) {
+//   // initiate a cache for current substring
+//   const cache = new Set();
+//   // declare two pointers, left and right for sliding window
+//   let left = 0,
+//     right = 0;
+//   let longest = 0;
+//   //iterate through s string
+//   while (right < s.length) {
+//     const char = s[right];
+
+//     // loop if we have dupe, and clear all properties until first instance of that dupe is deleted
+//     while (cache.has(char)) {
+//       cache.delete(s[left]);
+//       left++;
+//     }
+//     // always add current char to cache
+//     cache.add(char);
+//     //update longest if needed
+//     if (cache.size > longest) longest = cache.size;
+//     right++;
+//   }
+//   return longest;
+// };
+
+//testcase:
+// console.log(lengthOfLongestSubstring('abcabcabcdef')); //-> 6
+// abcabc;
+// abc[bac];
+////////////////////////
+// input: string
+// output: number representing the longest substring without dupes
 var lengthOfLongestSubstring = function (s) {
-  // initiate a cache for current substring
-  const cache = new Set();
-  // declare two pointers, left and right for sliding window
+  // initiate left, right and set object for unique chars
   let left = 0,
     right = 0;
+  let cache = new Set();
   let longest = 0;
-  //iterate through s string
   while (right < s.length) {
+    // create placeholder for cur char
     const char = s[right];
-
-    // loop if we have dupe, and clear all properties until first instance of that dupe is deleted
+    // check to make sure left excluded any dupes
     while (cache.has(char)) {
+      //   console.log('deleteing from left:', s[left]);
       cache.delete(s[left]);
       left++;
     }
-    // always add current char to cache
+    // update longest variable
+    longest = Math.max(longest, right - left + 1);
+
+    // add char at right to cache
     cache.add(char);
-    //update longest if needed
-    if (cache.size > longest) longest = cache.size;
+    // increment right
     right++;
   }
   return longest;
 };
-
-//testcase:
-console.log(lengthOfLongestSubstring('abcabcabcdef')); //-> 6
+console.log(lengthOfLongestSubstring('abcabcabcdea')); //-> 5
