@@ -1,4 +1,4 @@
-# LeetCode Top Interview 150 - DSA Practice
+# LeetCode Top Interview 150 & Other Leetcode problems
 
 A comprehensive collection of LeetCode problems organized by the **Top Interview 150** study plan structure.
 
