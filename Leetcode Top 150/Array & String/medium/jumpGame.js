@@ -19,22 +19,34 @@ Return true if you can reach the last index, or false otherwise.
 // has to land on nums.length - 1
 
 //strategy: iterate backwards from second to last element, each iteration, count steps taken and if current element == target index, update the target
-var canJump = function (nums) {
-  // define a target index starting at last element
-  let target = nums.length - 1;
+// var canJump = function (nums) {
+//   // define a target index starting at last element
+//   let target = nums.length - 1;
 
-  //work backwards from second-to-last element
+//   //work backwards from second-to-last element
+//   for (let i = nums.length - 2; i >= 0; i--) {
+//     // checkk if current element plus index is greater than target
+//     if (nums[i] + i >= target) {
+//       //if so, reassign target
+//       target = i;
+//     }
+//   }
+
+//   // lastly check if target ends up on first index
+//   return target === 0;
+// };
+
+//input: array of nums
+//output: boolean
+//strategy:
+var canJump = function (nums) {
+  let target = nums.length - 1;
   for (let i = nums.length - 2; i >= 0; i--) {
-    // checkk if current element plus index is greater than target
     if (nums[i] + i >= target) {
-      //if so, reassign target
       target = i;
     }
   }
-
-  // lastly check if target ends up on first index
   return target === 0;
 };
-
 console.log(canJump([3, 2, 1, 0, 4])); // -> false
 console.log(canJump([3, 4, 2, 1, 1, 2])); // -> true
