@@ -12,6 +12,15 @@ Note that s may contain leading or trailing spaces or multiple spaces between tw
 //input: string
 // output: same string with words reverse
 var reverseWords = function (s) {
+  const reverse = (str) => {
+    let left = 0,
+      right = 0;
+    while (left < right) {
+      [str[left], str[right]] = [str[right], str[left]];
+      left++;
+      right--;
+    }
+  };
   // trim whitespaces off input string
   // reverse the string somehow, by the will of god
   // iterate over reversed string
