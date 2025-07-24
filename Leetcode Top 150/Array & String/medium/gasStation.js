@@ -9,8 +9,30 @@ Given two integer arrays gas and cost, return the starting gas station's index i
 
 
 */
-
-var canCompleteCircuit = function (gas, cost) {};
+//inpput: two arrays: gas, and cost
+// output: number representing starting index to complete a full circuit
+//strategy: keep track of total gas and cost and compare at the end. Keep gas and cost calculations completely separate from the actual gasTank. These are separate processes.
+var canCompleteCircuit = function (gas, cost) {
+  // define total cost, gas and the current tank and starting index
+  let totalGas = 0;
+  let totalCost = 0;
+  let tank = 0;
+  let start = 0;
+  //iterate over gas array
+  for (let i = 0; i < gas.length; i++) {
+    //update the gas, cost and calculate tank
+    totalGas += gas[i];
+    totalCost += cost[i];
+    tank += gas[i] - cost[i];
+    //check if tank is below zero, then reset tank and adjust start
+    if (tank < 0) {
+      start = i + 1;
+      tank = 0;
+    }
+  }
+  // after iterations, return start if gas is greater than cost, otherwise return -1
+  return totalGas >= totalCost ? start : -1;
+};
 
 /* 
 Example 1:
@@ -45,3 +67,5 @@ n == gas.length == cost.length
 0 <= gas[i], cost[i] <= 104
 The input is generated such that the answer is unique.
 */
+
+console.log(canCompleteCircuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])); //-> 3
