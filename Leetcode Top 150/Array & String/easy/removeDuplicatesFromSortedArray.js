@@ -23,16 +23,18 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 //strategy: start iteration on second element
 var removeDuplicates = function (nums) {
   //two pointers
-  let right = 1;
+  let left = 0;
   //iterate over nums
-  for (let left = 0; left < nums.length; left++) {
-    while (nums[left] === nums[right]) {
-      nums[right] = '_';
-      right++;
+  for (let right = 1; right < nums.length; right++) {
+    // while left and right are different, increment left then assign right num to left
+    while (nums[left] !== nums[right]) {
+      left++;
+      nums[left] = nums[right];
     }
-    [nums[left + 1], nums[right]] = [nums[right], nums[left + 1]];
-    console.log('updated nums:', nums);
+    // console.log('updated nums:', nums);
   }
+  // return length of unique nums
+  return left + 1;
 };
 
 console.log(removeDuplicates([1, 1, 1, 2, 2, 3, 3, 4, 4]));
