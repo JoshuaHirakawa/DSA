@@ -44,6 +44,8 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 //input: string
 //output: number
 var romanToInt = function (s) {
+  // sum up values into result
+  let result = 0;
   // Create a map of roman numerals to their values
   const romanMap = {
     I: 1,
@@ -55,27 +57,23 @@ var romanToInt = function (s) {
     M: 1000,
   };
 
-  let result = 0;
-
-  // Iterate through the string
+  // iterate over input string
   for (let i = 0; i < s.length; i++) {
-    // Get current and next character values
-    const current = romanMap[s[i]];
-    const next = romanMap[s[i + 1]];
-
-    // If current is less than next, we need to subtract (subtraction cases)
-    if (current < next) {
-      result -= current;
-    } else {
-      result += current;
+    // check if current is less than next, if so we need to subtract from next and increment extra
+    if (romanMap[s[i]] < romanMap[s[i + 1]]) {
+      result += romanMap[s[i + 1]] - romanMap[s[i]];
+      i++;
+    } // otherwise we can just add current value to result
+    else {
+      result += romanMap[s[i]];
     }
   }
-
+  //return result value
   return result;
 };
 
-console.log(romanToInt('III')); // 3
-console.log(romanToInt('LVIII')); // 58
-console.log(romanToInt('MCMXCIV')); // 1994
-console.log(romanToInt('IV')); // 4
-console.log(romanToInt('IX'));
+console.log(romanToInt('III')); // -> 3
+console.log(romanToInt('LVIII')); // -> 58
+console.log(romanToInt('MCMXCIV')); // -> 1994
+console.log(romanToInt('IV')); // -> 4
+console.log(romanToInt('IX')); // -> 9
