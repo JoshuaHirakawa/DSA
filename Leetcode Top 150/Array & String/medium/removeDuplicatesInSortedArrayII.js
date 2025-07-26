@@ -24,4 +24,18 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 //input: array of nums
 // output: number representing the length of unique (up to 2 dupes) elements
-var removeDuplicates = function (nums) {};
+var removeDuplicates = function (nums) {
+  // first 2 elements will always be valid so start at 3rd element
+  let left = 2;
+  // iterate over nums starting from 3rd element
+  for (let right = 2; right < nums.length; right++) {
+    // this time, we need to compare two positions before current left
+    if (nums[right] !== nums[left - 2]) {
+      nums[left] = nums[right];
+      // increment left after assigning
+      left++;
+    }
+  }
+  return left;
+};
+console.log(removeDuplicates([1, 1, 1, 2, 2, 3])); // -> 5
