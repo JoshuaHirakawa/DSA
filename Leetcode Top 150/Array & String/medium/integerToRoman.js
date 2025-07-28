@@ -107,3 +107,43 @@ console.log(intToRoman(3453));
 console.log(intToRoman(4));
 console.log(intToRoman(2349));
 console.log(intToRoman(58));
+
+const intToRoman2 = (num) => {
+  // define a result string
+  let result = '';
+  // define a map of all possible values
+  const intRomanMap = {
+    1000: 'M',
+    900: 'CM',
+    500: 'D',
+    400: 'CD',
+    100: 'C',
+    90: 'XC',
+    50: 'L',
+    40: 'XL',
+    10: 'X',
+    9: 'IX',
+    5: 'V',
+    4: 'IV',
+    1: 'I',
+  };
+  //define a values array to iterate over in decsending order
+  const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  // iterate over the  values
+  for (let val of values) {
+    //with each iteration, use a while loop to subtract current val from num as ling as num is greater than or equal to val
+    while (num >= val) {
+      num -= val;
+      //also concatenate the corresponding roman numeral to result string
+      result += intRomanMap[val];
+    }
+  }
+  // return updated roman numeral result string
+  return result;
+};
+
+// test cases:
+console.log(intToRoman2(3532));
+console.log(intToRoman2(19));
+
+console.log(intToRoman2(472));
