@@ -61,4 +61,49 @@ Constraints:
 
 1 <= num <= 3999
 */
-var intToRoman = function (num) {};
+//input: number
+// output: string representation of roman numeral
+// strateg: use a map of all possible roman numeral combinations and an array of values in descending order
+//iterate over array as we subtract that value from num
+//the key is to understand that we can only subtract the value if its the max value to subtract from num without going below 0
+var intToRoman = function (num) {
+  // create a result string
+  let result = '';
+  //create a map of the numericall values to their possible roman numeral strings to append to result
+  const numRomanMap = {
+    1000: 'M',
+    900: 'CM',
+    500: 'D',
+    400: 'CD',
+    100: 'C',
+    90: 'XC',
+    50: 'L',
+    40: 'XL',
+    10: 'X',
+    9: 'IX',
+    5: 'V',
+    4: 'IV',
+    1: 'I',
+  };
+  // create a values array to iterate over all possible numbers we can use to subtract from num
+  const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  //iterate over values array
+  for (let value of values) {
+    //while num is greater than current value,
+    while (num >= value) {
+      //subtract value from num
+      num -= value;
+      //append corresponding roman numeral to result string
+      result += numRomanMap[value];
+    }
+  }
+
+  //return updated roman numeral result string
+  return result;
+};
+
+// test cases
+console.log(intToRoman(3453));
+console.log(intToRoman(4));
+console.log(intToRoman(2349));
+console.log(intToRoman(58));
