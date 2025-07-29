@@ -23,4 +23,26 @@ Input: s = "luffy is still joyboy"
 Output: 6
 Explanation: The last word is "joyboy" with length 6.
 */
-var lengthOfLastWord = function (s) {};
+//input: string (sentence)
+//output: number representing the length of the last word
+//iterate backwards, starting a count on the first non-space character
+var lengthOfLastWord = function (s) {
+  // define a result number
+  let result = 0;
+  // iterate backwards using for loop
+  for (let i = s.length - 1; i >= 0; i--) {
+    // start counting from first non space char
+    if (s[i] !== ' ') {
+      // use another loop to count length of last word
+      while (s[i] !== ' ' && i >= 0) {
+        result++;
+        i--;
+      }
+      return result;
+    }
+  }
+  return result;
+};
+console.log(lengthOfLastWord('   fly me   to   the moon  '));
+console.log(lengthOfLastWord('luffy is still joyboy'));
+console.log(lengthOfLastWord('Hello World'));
