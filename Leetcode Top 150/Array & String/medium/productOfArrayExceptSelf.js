@@ -34,7 +34,32 @@ The input is generated such that answer[i] is guaranteed to fit in a 32-bit inte
 
 Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)
 */
-
+// input: array of nums
+// output: array of products
+// use the two pass strategy to round op all the product traversing right and then all products traversing left
 var productExceptSelf = function (nums) {
-  //
+  // define a result array with length of nums
+  const result = new Array(nums.length);
+  // give starting element of 1
+  result[0] = 1;
+  // define a pointer to traverse array
+  let i = 1;
+  while (i < nums.length) {
+    result[i] = result[i - 1] * nums[i - 1];
+    i++;
+  }
+  //adjust i
+  i--;
+  //create an accumulator for traversing left
+  let rightProduct = 1;
+  while (i >= 0) {
+    // multiply current result val by right product, then update right product
+    result[i] *= rightProduct;
+    rightProduct *= nums[i];
+    i--;
+  }
+  //return result array
+  return result;
 };
+
+console.log(productExceptSelf([1, 2, 3, 4]));
