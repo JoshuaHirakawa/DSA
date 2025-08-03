@@ -41,4 +41,7 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 //input: string and a number representing rows
 //output: string of zigzag processed line by line
 //strategy: Look for any patterns in the example output
-var convert = function (s, numRows) {};
+var convert = function (s, numRows) {
+  // Edge case: single row or string shorter than rows
+  if (numRows === 1 || s.length <= numRows) return s;
+};
