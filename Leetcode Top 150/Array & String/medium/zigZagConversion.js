@@ -45,10 +45,17 @@ var convert = function (s, numRows) {
   // Edge case: single row or string shorter than rows
   if (numRows === 1 || s.length <= numRows) return s;
   // Create an array to hold each row's characters
+  const rows = new Array(numRows).fill().map(() => []);
+  let currentRow = 0;
+  let goingDown = false;
 
   // Process each character
-  // Add character to current row
-  // Change direction when we hit top or bottom
+  for (let char of s) {
+    // Add character to current row
+    rows[currentRow].push(char);
+    // Change direction when we hit top or bottom
+  }
+
   // Move to next row
   // Join rows together
 };
