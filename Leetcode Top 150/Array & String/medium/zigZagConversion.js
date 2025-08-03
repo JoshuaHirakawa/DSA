@@ -54,8 +54,12 @@ var convert = function (s, numRows) {
     // Add character to current row
     rows[currentRow].push(char);
     // Change direction when we hit top or bottom
+    if (currentRow === 0 || currentRow === numRows - 1) {
+      goingDown = !goingDown;
+    }
+    // Move to next row
+    currentRow += goingDown ? 1 : -1;
   }
 
-  // Move to next row
   // Join rows together
 };
