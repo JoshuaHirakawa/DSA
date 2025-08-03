@@ -44,4 +44,11 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 var convert = function (s, numRows) {
   // Edge case: single row or string shorter than rows
   if (numRows === 1 || s.length <= numRows) return s;
+  // Create an array to hold each row's characters
+
+  // Process each character
+  // Add character to current row
+  // Change direction when we hit top or bottom
+  // Move to next row
+  // Join rows together
 };
