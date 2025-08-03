@@ -38,3 +38,7 @@ Constraints:
 s consists of English letters (lower-case and upper-case), ',' and '.'.
 1 <= numRows <= 1000
  */
+//input: string and a number representing rows
+//output: string of zigzag processed line by line
+//strategy: Look for any patterns in the example output
+var convert = function (s, numRows) {};
