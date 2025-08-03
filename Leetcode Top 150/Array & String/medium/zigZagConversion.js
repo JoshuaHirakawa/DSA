@@ -62,4 +62,7 @@ var convert = function (s, numRows) {
   }
 
   // Join rows together
+  return rows.map((row) => row.join('')).join('');
 };
+
+console.log(convert('PAYPALISHIRING', 3));
