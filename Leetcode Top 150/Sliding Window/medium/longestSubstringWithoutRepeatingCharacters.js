@@ -119,31 +119,26 @@
 // output: number
 
 const longestSubstringNonRepeating = (str) => {
-  // declare a longest variable
-  let longest = 1;
-  let current = 0;
-  // create left and right pointers
+  // declare left, right, and longest variables
   let left = 0,
-    right = 1;
-  // create a charCount
-  const chars = new Set(str[left]);
+    right = 0;
+  let longest = 0;
+  const cache = new Set();
 
-  // iterate over string
   while (right < str.length) {
-    if (chars.has(str[right])) {
-      console.log('we found a duplicate');
-      longest = current > longest ? current : longest;
-      current = 1;
-      chars.clear();
-      left = right;
-    } else {
-      chars.add(str[right]);
-      current++;
+    //use another while loop to slide left pointer up to right
+    while (cache.has(str[right])) {
+      cache.delete(str[left]);
+      left++;
     }
+    cache.add(str[right]);
+
+    // either way, we can update the longest variable
+    longest = Math.max(longest, right - left + 1);
+
     right++;
   }
-  console.log('while loop terminated');
   return longest;
 };
 
-console.log(longestSubstringNonRepeating('abcabcaa')); // -> 3
+console.log(longestSubstringNonRepeating('abcabcaabcdef')); // -> 6
