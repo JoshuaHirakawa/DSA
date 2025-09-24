@@ -118,22 +118,51 @@
 // input string
 // output: number
 
-const longestSubstringNonRepeating = (str) => {
-  // declare left, right, and longest variables
+// const longestSubstringNonRepeating = (str) => {
+//   // declare left, right, and longest variables
+//   let left = 0,
+//     right = 0;
+//   let longest = 0;
+//   const cache = new Set();
+
+//   while (right < str.length) {
+//     //use another while loop to slide left pointer up to right
+//     while (cache.has(str[right])) {
+//       cache.delete(str[left]);
+//       left++;
+//     }
+//     cache.add(str[right]);
+
+//     // either way, we can update the longest variable
+//     longest = Math.max(longest, right - left + 1);
+
+//     right++;
+//   }
+//   return longest;
+// };
+
+// console.log(longestSubstringNonRepeating('abcabcaabcdef')); // -> 6
+
+// find the longest substring without repeating characters
+// input: string
+// output: number (length of longest substring)
+
+const longestSubstring = (s) => {
+  // declare left, right, longest variables, and cache to store chars
   let left = 0,
     right = 0;
   let longest = 0;
   const cache = new Set();
 
-  while (right < str.length) {
-    //use another while loop to slide left pointer up to right
-    while (cache.has(str[right])) {
-      cache.delete(str[left]);
+  // iterate over string
+  while (right < s.length) {
+    while (cache.has(s[right])) {
+      cache.delete(s[left]);
       left++;
     }
-    cache.add(str[right]);
 
-    // either way, we can update the longest variable
+    cache.add(s[right]);
+
     longest = Math.max(longest, right - left + 1);
 
     right++;
@@ -141,4 +170,5 @@ const longestSubstringNonRepeating = (str) => {
   return longest;
 };
 
-console.log(longestSubstringNonRepeating('abcabcaabcdef')); // -> 6
+// testcase:
+console.log(longestSubstring('abcabcde')); // -> 5
