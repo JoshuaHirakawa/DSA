@@ -59,58 +59,91 @@
 ////////////////////////
 // input: string
 // output: number representing the longest substring without dupes
-var lengthOfLongestSubstring = function (s) {
-  // initiate left, right and set object for unique chars
-  let left = 0,
-    right = 0;
-  let cache = new Set();
-  let longest = 0;
-  while (right < s.length) {
-    // create placeholder for cur char
-    const char = s[right];
-    // check to make sure left excluded any dupes
-    while (cache.has(char)) {
-      //   console.log('deleteing from left:', s[left]);
-      cache.delete(s[left]);
-      left++;
-    }
-    // update longest variable
-    longest = Math.max(longest, right - left + 1);
+// var lengthOfLongestSubstring = function (s) {
+//   // initiate left, right and set object for unique chars
+//   let left = 0,
+//     right = 0;
+//   let cache = new Set();
+//   let longest = 0;
+//   while (right < s.length) {
+//     // create placeholder for cur char
+//     const char = s[right];
+//     // check to make sure left excluded any dupes
+//     while (cache.has(char)) {
+//       //   console.log('deleteing from left:', s[left]);
+//       cache.delete(s[left]);
+//       left++;
+//     }
+//     // update longest variable
+//     longest = Math.max(longest, right - left + 1);
 
-    // add char at right to cache
-    cache.add(char);
-    // increment right
-    right++;
-  }
-  return longest;
-};
-console.log(lengthOfLongestSubstring('abcabcabcdea')); //-> 5
+//     // add char at right to cache
+//     cache.add(char);
+//     // increment right
+//     right++;
+//   }
+//   return longest;
+// };
+// console.log(lengthOfLongestSubstring('abcabcabcdea')); //-> 5
 
 // input: string
 // output: number representing the longest substring without dupes
-var lengthOfLongestSubstring = function (s) {
-  // initiate left, right and set object for unique chars
-  let left = 0,
-    right = 0;
-  let cache = new Set();
-  let longest = 0;
-  while (right < s.length) {
-    // create placeholder for cur char
-    const char = s[right];
-    // check to make sure left excluded any dupes
-    while (cache.has(char)) {
-      //   console.log('deleteing from left:', s[left]);
-      cache.delete(s[left]);
-      left++;
-    }
-    // update longest variable
-    longest = Math.max(longest, right - left + 1);
+// var lengthOfLongestSubstring = function (s) {
+//   // initiate left, right and set object for unique chars
+//   let left = 0,
+//     right = 0;
+//   let cache = new Set();
+//   let longest = 0;
+//   while (right < s.length) {
+//     // create placeholder for cur char
+//     const char = s[right];
+//     // check to make sure left excluded any dupes
+//     while (cache.has(char)) {
+//       //   console.log('deleteing from left:', s[left]);
+//       cache.delete(s[left]);
+//       left++;
+//     }
+//     // update longest variable
+//     longest = Math.max(longest, right - left + 1);
 
-    // add char at right to cache
-    cache.add(char);
-    // increment right
+//     // add char at right to cache
+//     cache.add(char);
+//     // increment right
+//     right++;
+//   }
+//   return longest;
+// };
+// console.log(lengthOfLongestSubstring('abcabcabcdea')); //-> 5
+
+// input string
+// output: number
+
+const longestSubstringNonRepeating = (str) => {
+  // declare a longest variable
+  let longest = 1;
+  let current = 0;
+  // create left and right pointers
+  let left = 0,
+    right = 1;
+  // create a charCount
+  const chars = new Set(str[left]);
+
+  // iterate over string
+  while (right < str.length) {
+    if (chars.has(str[right])) {
+      console.log('we found a duplicate');
+      longest = current > longest ? current : longest;
+      current = 1;
+      chars.clear();
+      left = right;
+    } else {
+      chars.add(str[right]);
+      current++;
+    }
     right++;
   }
+  console.log('while loop terminated');
   return longest;
 };
-console.log(lengthOfLongestSubstring('abcabcabcdea')); //-> 5
+
+console.log(longestSubstringNonRepeating('abcabcaa')); // -> 3
