@@ -147,14 +147,39 @@
 // input: string
 // output: number (length of longest substring)
 
+// const longestSubstring = (s) => {
+//   // declare left, right, longest variables, and cache to store chars
+//   let left = 0,
+//     right = 0;
+//   let longest = 0;
+//   const cache = new Set();
+
+//   // iterate over string
+//   while (right < s.length) {
+//     while (cache.has(s[right])) {
+//       cache.delete(s[left]);
+//       left++;
+//     }
+
+//     cache.add(s[right]);
+
+//     longest = Math.max(longest, right - left + 1);
+
+//     right++;
+//   }
+//   return longest;
+// };
+
+// // testcase:
+// console.log(longestSubstring('abcabcde')); // -> 5
+
 const longestSubstring = (s) => {
-  // declare left, right, longest variables, and cache to store chars
   let left = 0,
     right = 0;
   let longest = 0;
+
   const cache = new Set();
 
-  // iterate over string
   while (right < s.length) {
     while (cache.has(s[right])) {
       cache.delete(s[left]);
@@ -170,5 +195,4 @@ const longestSubstring = (s) => {
   return longest;
 };
 
-// testcase:
-console.log(longestSubstring('abcabcde')); // -> 5
+console.log(longestSubstring('abcdefgabc')); // -> 7
